@@ -2,8 +2,8 @@ FROM node:9.11-stretch as builder
 ENV NODE_ENV=production
 WORKDIR /usr/app/dist
 COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
-RUN apt-get update && apt-get install python make gcc g++
-RUN npm install --production
+RUN apt-get update -q && apt-get install -q python make gcc g++
+RUN npm install --production --silent
 COPY . .
 
 FROM node:9.11-alpine
