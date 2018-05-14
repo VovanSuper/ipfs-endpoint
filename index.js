@@ -11,7 +11,7 @@ dotenv.load();
 
 let codeToHashMap = new Map();
 let codeToDigestMap = new Map();
-var ipfsLocation = "";
+let ipfsLocation = "";
 
 const ipfs = ipfsApi(process.env.IPFS_NODE_HOST, process.env.IPFS_NODE_PORT, { protocol: 'http' });
 const storage = multer.memoryStorage();
@@ -23,7 +23,7 @@ const app = express();
 app.use(helmet());
 
 app.get('/ipfs/:hash', (req, res, next) => {
-  console.log(codeToHashMap)
+  console.log(codeToHashMap);
   var ipfsLocation = "";
   var digest = "";
   let hash = req.params.hash;
@@ -34,7 +34,7 @@ app.get('/ipfs/:hash', (req, res, next) => {
   }
   else {
     ipfsLocation = hash;
-  };
+  }
 
 
 
