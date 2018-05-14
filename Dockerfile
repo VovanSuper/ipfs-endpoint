@@ -1,16 +1,14 @@
 FROM node:9.11-stretch as builder
-ENV NODE_ENV production
-WORKDIR dist/
+ENV NODE_ENV=production
+WORKDIR /usr/app/dist
 COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
-RUN apt-get update && apt-get install python make gcc g++ git
+RUN apt-get update && apt-get install python make gcc g++
 RUN npm install --production
 COPY . .
 
-FROM node:9.11-alpine:latest
+FROM node:9.11-alpine
 ENV NODE_ENV=production
 WORKDIR /usr/src/app
-COPY --from=builder dist/ .
-EXPOSE 8082
-EXPOSE 8081
-EXPOSE 5001
-CMD npm start
+COPY --from=builder /usr/app/dist .
+# HEALTHCHECK --interval=10s --timeout=30s --start-period=2s --retries=5 CMD [ "curl", "http://localhost:8081/" ]
+CMD ["npm", "start"]

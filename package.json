@@ -9,18 +9,18 @@
     "compose:up": "docker-compose up -d",
     "compose:rebuild": "docker-compose build"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["node.js", "ipfs", "ipfs-api"],
+  "author": "Vladimir Ovsyukov <vovansuper@mail.ru>",
   "license": "ISC",
   "dependencies": {
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
     "helmet": "^3.12.0",
     "ipfs-api": "^20.2.0",
-    "multer": "^1.3.0"
+    "multer": "^1.3.0",
+    "cross-env": "^5.1.5"
   },
   "devDependencies": {
-    "cross-env": "^5.1.5",
     "mocha": "^5.1.1",
     "supertest": "^3.0.0"
   }
